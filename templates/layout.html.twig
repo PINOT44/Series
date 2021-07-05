@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %} Series ! {% endblock %}</title>
+    {# permet de modifier l'écriture #}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    {# lien vers css #}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href=" https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {# lien vers image #}
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="container">
+            <header>
+                {# path : lien entre les pages #}
+                <a class="site-title" href="{{ path('home') }}" title="series | Home">
+                    {# path : lien vers le logo #}
+                    <img src="{{ asset('img/logo.png') }}" alt="series"> series
+                </a>
+
+        <nav>
+            <ul>
+                <li><a href="{{ path("home") }}" >Home</a></li>
+                <li><a href="{{ path("idea_list") }}" >All ideas</a></li>
+                <li><a href="{{ path("about") }}" >About us</a></li>
+                <li><a href="{{ path("idea_add") }}" >Add an idea</a></li>
+
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    <div>Hello {{ app.user.username }}</div>
+                {%  else %}
+                    <a href="{{ path('app_register') }}">CreerCompte</a>
+                    <a href="{{ path('app_login') }}">Connexion</a>
+                {%  endif %}
+
+                </ul>
+        </nav>
+    </header>
+
+            {# read and display all flash messages #}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+
+    <footer>
+        © {{ "now"|date("Y") }} series
+    </footer>
+</div>
+
+</body>
+</html>

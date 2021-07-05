@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+{% block main %}
+<h1>{{ idea.title }}</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda dolore ex exercitationem iste molestiae nihil quae quia tenetur totam. Corporis, cum error odio pariatur quos reprehenderit sit tenetur voluptates.</p>
+
+    {# todo : affichage de toutes les infos sur cette idée #}
+    <article>
+        <h2><a href="{{ path('idea_details', {'id':idea.id}) }}">{{ idea.title }}</a></h2>
+        <p>{{  idea.category.name }}</p>
+        <div class="idea-description">{{ idea.description }}</div>
+        <div>{{ idea.dateCreate|date('Y-m-d') }}</div>
+        <div>By {{ idea.author }}</div>
+    </article>
+
+{% endblock %}
+
+{% block title %} About us | {{ parent() }} {% endblock %}

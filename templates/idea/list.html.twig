@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block main %}
+<h1>All ideas</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad assumenda dolore ex exercitationem iste molestiae nihil quae quia tenetur totam. Corporis, cum error odio pariatur quos reprehenderit sit tenetur voluptates.</p>
+
+    {# todo : affichage de la liste des idées récupérées depuis la bdd : récupère la liste avec une boucle#}
+<div>
+    {% for idea in ideas %}
+        <article>
+            <h2><a href="{{ path('idea_details', {'id':idea.id}) }}"> {{ idea.title }} ({{ idea.category.name }})</a></h2>
+        </article>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block title %} About us | {{ parent() }} {% endblock %}
